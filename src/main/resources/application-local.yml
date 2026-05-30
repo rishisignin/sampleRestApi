@@ -1,0 +1,25 @@
+server:
+  port: 8081
+
+spring:
+  mongodb:
+    uri: mongodb+srv://rishisignin_db_user:qxMBFWikBFK04J1W@cluster0.kq1zo5f.mongodb.net/payment?appName=Cluster0
+    database: payment
+
+service:
+  timeout-ms: 3000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    org.example: DEBUG
+    org.mongodb.driver: INFO
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG

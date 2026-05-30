@@ -1,0 +1,14 @@
+server:
+  port: 8081
+
+spring:
+  mongodb:
+    uri: ${MONGODB_URI:}
+    database: payment
+
+service:
+  timeout-ms: 3000
+
+logging:
+  level:
+    org.example: DEBUG

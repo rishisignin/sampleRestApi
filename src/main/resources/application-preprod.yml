@@ -1,0 +1,9 @@
+server:
+  port: 8082
+
+service:
+  timeout-ms: 4000
+
+logging:
+  level:
+    org.example: INFO

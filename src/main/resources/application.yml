@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: payment-service
+  profiles:
+    active: local
+  config:
+    import:
+      - optional:classpath:payment-service.yml
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.example: DEBUG
+    org.springframework.web: INFO

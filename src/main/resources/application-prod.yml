@@ -1,0 +1,10 @@
+server:
+  port: 8083
+
+service:
+  timeout-ms: 5000
+
+logging:
+  level:
+    org.example: WARN
+    org.springframework.web: WARN

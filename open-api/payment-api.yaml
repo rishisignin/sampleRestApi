@@ -1,0 +1,100 @@
+openapi: 3.0.3
+info:
+  title: Payment API
+  version: 1.0.0
+  description: API for processing credit card payments
+
+paths:
+  /api/payments:
+    post:
+      summary: Charge payment by credit card
+      operationId: chargePayment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+            example:
+              chargeCustomAmount: true
+              customAmount: 40.00
+              cardNumber: "4111111111111111"
+              expirationDate: "12/27"
+              securityCode: "123"
+              cardHolderName: "Jane Doe"
+              zipCode: "10001"
+      responses:
+        '200':
+          description: Payment accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentSuccessResponse'
+              example:
+                message: "Your payment will reflect shortly."
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentErrorResponse'
+              example:
+                message: "Something went wrong."
+
+components:
+  schemas:
+    PaymentRequest:
+      type: object
+      required:
+        - cardNumber
+        - expirationDate
+        - securityCode
+        - cardHolderName
+        - zipCode
+      properties:
+        chargeCustomAmount:
+          type: boolean
+          description: Whether to charge a custom amount instead of the full amount due
+          example: true
+        customAmount:
+          type: number
+          format: double
+          description: Custom amount to charge (required if chargeCustomAmount is true)
+          example: 40.00
+        cardNumber:
+          type: string
+          description: Credit card number (digits only, no spaces)
+          example: "4111111111111111"
+        expirationDate:
+          type: string
+          description: Card expiration date in MM/YY format
+          pattern: '^\d{2}/\d{2}$'
+          example: "12/27"
+        securityCode:
+          type: string
+          description: Card CVV/security code
+          minLength: 3
+          maxLength: 4
+          example: "123"
+        cardHolderName:
+          type: string
+          description: Full name of the card holder
+          example: "Jane Doe"
+        zipCode:
+          type: string
+          description: Billing zip or postal code
+          example: "10001"
+
+    PaymentSuccessResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Your payment will reflect shortly."
+
+    PaymentErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Something went wrong."

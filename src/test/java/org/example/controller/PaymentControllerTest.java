@@ -12,11 +12,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
-import java.math.BigDecimal;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.MockitoAnnotations.initMocks;
-
 class PaymentControllerTest {
 
     @InjectMocks
@@ -25,12 +20,13 @@ class PaymentControllerTest {
     private PaymentService paymentService;
 
     @BeforeEach
-     void setUp(){
+    void setUp() {
         MockitoAnnotations.openMocks(this);
         controller = new PaymentController(paymentService);
     }
+
     @Test
-    void createPaymentTest(){
+    void createPaymentTest() {
         Mockito.when(paymentService.processPayment(Mockito.any())).thenReturn(new PaymentResponse());
         PaymentRequest request = new PaymentRequest();
         ResponseEntity<PaymentResponse> response = controller.createPayment(request);
@@ -38,17 +34,13 @@ class PaymentControllerTest {
     }
 
     @Test
-    void createPaymentTest2(){
-        PaymentResponse pmtResponse=new PaymentResponse();
-        pmtResponse.setTransactionId("1234");
-        pmtResponse.setStatus("SUCCESS");
-        pmtResponse.setAmount(new BigDecimal("100.50"));
-        pmtResponse.setCurrency("USD");
-        pmtResponse.setTimestamp(null);
+    void createPaymentTest2() {
+        PaymentResponse pmtResponse = new PaymentResponse();
+        pmtResponse.setMessage("Your payment will reflect shortly.");
 
         Mockito.when(paymentService.processPayment(Mockito.any())).thenReturn(pmtResponse);
         PaymentRequest request = new PaymentRequest();
         ResponseEntity<PaymentResponse> response = controller.createPayment(request);
-        Assertions.assertEquals("1234", response.getBody().getTransactionId());
+        Assertions.assertEquals("Your payment will reflect shortly.", response.getBody().getMessage());
     }
 }
