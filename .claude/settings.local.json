@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mvn --version)",
+      "Read(//c/Users/rishi/.m2/repository/org/springframework/boot/spring-boot-mongodb/4.0.4/**)",
+      "Read(//c/Users/rishi/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/4.0.4/**)",
+      "Bash(unzip -p ~/.m2/repository/org/springframework/boot/spring-boot-mongodb/4.0.4/spring-boot-mongodb-4.0.4.jar META-INF/spring-configuration-metadata.json)",
+      "Bash(ls -la \"/c/Users/rishi/.claude/projects/C--Users-rishi-IdeaProjects-PaymentApplication/\" 2>&1)",
+      "Bash(unzip -p ~/.m2/repository/org/springframework/boot/spring-boot-mongodb/4.0.4/spring-boot-mongodb-4.0.4-sources.jar org/springframework/boot/mongodb/health/MongoHealthIndicator.java)",
+      "Bash(unzip -p ~/.m2/repository/org/springframework/boot/spring-boot-mongodb/4.0.4/spring-boot-mongodb-4.0.4-sources.jar org/springframework/boot/mongodb/health/autoconfigure/MongoHealthContributorAutoConfiguration.java)",
+      "Bash(unzip -l ~/.m2/repository/org/springframework/boot/spring-boot-mongodb/4.0.4/spring-boot-mongodb-4.0.4-sources.jar)",
+      "Bash(unzip -p ~/.m2/repository/org/springframework/boot/spring-boot-mongodb/4.0.4/spring-boot-mongodb-4.0.4-sources.jar org/springframework/boot/mongodb/autoconfigure/health/MongoHealthContributorAutoConfiguration.java)",
+      "WebSearch"
+    ]
+  }
+}

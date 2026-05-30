@@ -1,0 +1,10 @@
+service:
+  name: PaymentProcessingService
+  description: "A dummy service for processing payments"
+  version: 1.0.0
+  timeout-ms: 5000
+
+dummy:
+  response:
+    status: SUCCESS
+    message: Transaction completed successfully

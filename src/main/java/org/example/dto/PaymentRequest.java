@@ -1,9 +1,8 @@
 package org.example.dto;
 
-import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,17 +14,25 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class PaymentRequest {
 
-    @NotBlank(message = "Payer ID is required")
-    private String payerId;
+    private Boolean chargeCustomAmount;
 
-    @NotBlank(message = "Payee ID is required")
-    private String payeeId;
+    private BigDecimal customAmount;
 
-    @NotNull(message = "Amount is required")
-    @DecimalMin(value = "0.01", message = "Amount must be at least 0.01")
-    private BigDecimal amount;
+    @NotBlank(message = "Card number is required")
+    @Pattern(regexp = "^\\d{13,19}$", message = "Card number must be 13 to 19 digits")
+    private String cardNumber;
 
-    @NotBlank(message = "Currency is required")
-    @Pattern(regexp = "^[A-Z]{3}$", message = "Currency must be a 3-letter ISO code")
-    private String currency;
+    @NotBlank(message = "Expiration date is required")
+    @Pattern(regexp = "^\\d{2}/\\d{2}$", message = "Expiration date must be in MM/YY format")
+    private String expirationDate;
+
+    @NotBlank(message = "Security code is required")
+    @Size(min = 3, max = 4, message = "Security code must be 3 or 4 digits")
+    private String securityCode;
+
+    @NotBlank(message = "Card holder name is required")
+    private String cardHolderName;
+
+    @NotBlank(message = "Zip code is required")
+    private String zipCode;
 }
